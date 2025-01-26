@@ -33,7 +33,7 @@ class TermsAndConditionText extends StatelessWidget {
                 .copyWith(color: ColorManager.grey9E, height: 1.5),
           ),
           TextSpan(
-            text: ' PrivacyPolicy.',
+            text: ' Privacy Policy.',
             style: Styles.font12Regular.copyWith(
               color: ColorManager.darkBlue,
               height: 1.5,

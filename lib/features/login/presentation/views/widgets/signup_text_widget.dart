@@ -22,13 +22,15 @@ class SignUpTextWidget extends StatelessWidget {
           ),
         ),
         TextButton(
-            onPressed: () => GoRouter.of(context).push(Routes.signupView),
-            child: Text(
-              'Sign Up',
-              style: Styles.font12Regular.copyWith(
-                  fontWeight: FontWeightHelper.semiBold,
-                  color: ColorManager.mainBlue),
-            ))
+          onPressed: () => GoRouter.of(context).push(Routes.signupView),
+          child: Text(
+            'Sign Up',
+            style: Styles.font12Regular.copyWith(
+              fontWeight: FontWeightHelper.semiBold,
+              color: ColorManager.mainBlue,
+            ),
+          ),
+        ),
       ],
     );
   }

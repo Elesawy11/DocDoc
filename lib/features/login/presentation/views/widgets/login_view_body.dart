@@ -42,7 +42,6 @@ class LoginViewBody extends StatelessWidget {
               AppTextButton(
                 text: 'Login',
                 onPressed: () {
-                  // context.push(Routes.homeView);
                   if (getIt
                       .get<LoginCubit>()
                       .formKey

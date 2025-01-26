@@ -15,22 +15,29 @@ class LoginCubit extends Cubit<LoginState> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  bool isObscureText = true;
   Future<void> loginMethod(LoginRequestBody loginRequest) async {
     emit(LoginLoading());
 
     var response = await loginRepo.login(loginRequest);
 
     response.fold(
-        (failure) => emit(
-            LoginFailure(failure.apiErrorModel.message ?? 'unKnowen error')),
-        (responseBody) async {
-      getIt.get<ApiKeys>().token = responseBody.userData!.token;
+      (failure) =>
+          emit(LoginFailure(failure.apiErrorModel.message ?? 'unKnowen error')),
+      (responseBody) async {
+        getIt.get<ApiKeys>().token = responseBody.userData!.token;
 
-      emit(
-        LoginSuccess(
-          responseBody,
-        ),
-      );
-    });
+        emit(
+          LoginSuccess(
+            responseBody,
+          ),
+        );
+      },
+    );
+  }
+
+  void toggleObscureText() {
+    isObscureText = !isObscureText;
+    emit(LoginObscureText(isObscureText));
   }
 }

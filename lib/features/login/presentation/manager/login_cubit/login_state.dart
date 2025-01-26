@@ -15,3 +15,8 @@ final class LoginSuccess extends LoginState {
 
   LoginSuccess(this.loginResopnseBody);
 }
+final class LoginObscureText extends LoginState {
+  final bool isObscureText;
+
+  LoginObscureText(this.isObscureText);
+}
