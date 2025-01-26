@@ -1,7 +1,7 @@
 import 'package:apointment_app/core/utils/app_regex.dart';
+import 'package:apointment_app/core/utils/service_locator.dart';
 import 'package:apointment_app/features/signup/presentation/manger/sign_up_cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/color.dart';
@@ -30,7 +30,7 @@ class _SignUpFormsTextState extends State<SignUpFormsText> {
   void initState() {
     super.initState();
 
-    passwordController = context.read<SignUpCubit>().passwordController;
+    passwordController = getIt.get<SignUpCubit>().passwordController;
     setupPassowrdControllerListener();
   }
 
@@ -38,15 +38,15 @@ class _SignUpFormsTextState extends State<SignUpFormsText> {
     passwordController.addListener(() {
       setState(() {
         hasLowerCase = AppRegex.hasLowerCase(
-            context.read<SignUpCubit>().passwordController.text);
+            getIt.get<SignUpCubit>().passwordController.text);
         hasUpperCase = AppRegex.hasUpperCase(
-            context.read<SignUpCubit>().passwordController.text);
+            getIt.get<SignUpCubit>().passwordController.text);
         hasSpecialCharacters = AppRegex.hasSpecialCharacter(
-            context.read<SignUpCubit>().passwordController.text);
+            getIt.get<SignUpCubit>().passwordController.text);
         hasNumber = AppRegex.hasNumber(
-            context.read<SignUpCubit>().passwordController.text);
+            getIt.get<SignUpCubit>().passwordController.text);
         hasMinLength = AppRegex.hasMinLength(
-            context.read<SignUpCubit>().passwordController.text);
+            getIt.get<SignUpCubit>().passwordController.text);
       });
     });
   }
@@ -54,11 +54,11 @@ class _SignUpFormsTextState extends State<SignUpFormsText> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: context.read<SignUpCubit>().formKey,
+      key: getIt.get<SignUpCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
-              controller: context.read<SignUpCubit>().nameController,
+              controller: getIt.get<SignUpCubit>().nameController,
               hintText: 'Name',
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -67,7 +67,7 @@ class _SignUpFormsTextState extends State<SignUpFormsText> {
               }),
           verticalSpace(16),
           AppTextFormField(
-              controller: context.read<SignUpCubit>().phoneController,
+              controller: getIt.get<SignUpCubit>().phoneController,
               hintText: 'Phone number',
               validator: (value) {
                 if (value == null ||
@@ -78,7 +78,7 @@ class _SignUpFormsTextState extends State<SignUpFormsText> {
               }),
           verticalSpace(16),
           AppTextFormField(
-            controller: context.read<SignUpCubit>().emailController,
+            controller: getIt.get<SignUpCubit>().emailController,
             hintText: 'Email',
             validator: (value) {
               if (value == null ||
@@ -90,7 +90,7 @@ class _SignUpFormsTextState extends State<SignUpFormsText> {
           ),
           verticalSpace(16),
           AppTextFormField(
-            controller: context.read<SignUpCubit>().passwordController,
+            controller: getIt.get<SignUpCubit>().passwordController,
             hintText: 'Password',
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -114,7 +114,7 @@ class _SignUpFormsTextState extends State<SignUpFormsText> {
           verticalSpace(24),
           AppTextFormField(
             controller:
-                context.read<SignUpCubit>().passwordConfirmationController,
+                getIt.get<SignUpCubit>().passwordConfirmationController,
             hintText: 'Password confirmation',
             validator: (value) {
               if (value == null || value.isEmpty) {

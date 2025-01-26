@@ -1,9 +1,8 @@
 import 'package:apointment_app/core/utils/app_regex.dart';
+import 'package:apointment_app/core/utils/service_locator.dart';
 import 'package:apointment_app/features/login/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/color.dart';
 import '../../../../../core/widgets/app_text_form_field.dart';
@@ -29,7 +28,7 @@ class _EmailAndPassowrdState extends State<EmailAndPassowrd> {
   void initState() {
     super.initState();
 
-    passwordController = context.read<LoginCubit>().passwordController;
+    passwordController = getIt.get<LoginCubit>().passwordController;
     setupPassowrdControllerListener();
   }
 
@@ -37,15 +36,15 @@ class _EmailAndPassowrdState extends State<EmailAndPassowrd> {
     passwordController.addListener(() {
       setState(() {
         hasLowerCase = AppRegex.hasLowerCase(
-            context.read<LoginCubit>().passwordController.text);
+            getIt.get<LoginCubit>().passwordController.text);
         hasUpperCase = AppRegex.hasUpperCase(
-            context.read<LoginCubit>().passwordController.text);
+            getIt.get<LoginCubit>().passwordController.text);
         hasSpecialCharacters = AppRegex.hasSpecialCharacter(
-            context.read<LoginCubit>().passwordController.text);
-        hasNumber = AppRegex.hasNumber(
-            context.read<LoginCubit>().passwordController.text);
+            getIt.get<LoginCubit>().passwordController.text);
+        hasNumber =
+            AppRegex.hasNumber(getIt.get<LoginCubit>().passwordController.text);
         hasMinLength = AppRegex.hasMinLength(
-            context.read<LoginCubit>().passwordController.text);
+            getIt.get<LoginCubit>().passwordController.text);
       });
     });
   }
@@ -53,11 +52,11 @@ class _EmailAndPassowrdState extends State<EmailAndPassowrd> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: context.read<LoginCubit>().formKey,
+      key: getIt.get<LoginCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
-            controller: context.read<LoginCubit>().emailController,
+            controller: getIt.get<LoginCubit>().emailController,
             hintText: 'Email',
             validator: (value) {
               if (value == null ||
@@ -69,7 +68,7 @@ class _EmailAndPassowrdState extends State<EmailAndPassowrd> {
           ),
           verticalSpace(16),
           AppTextFormField(
-            controller: context.read<LoginCubit>().passwordController,
+            controller: getIt.get<LoginCubit>().passwordController,
             hintText: 'Password',
             validator: (value) {
               if (value == null || value.isEmpty) {
