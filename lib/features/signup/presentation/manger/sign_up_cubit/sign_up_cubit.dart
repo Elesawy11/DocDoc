@@ -1,3 +1,5 @@
+import 'package:apointment_app/core/utils/api_keys.dart';
+import 'package:apointment_app/core/utils/service_locator.dart';
 import 'package:apointment_app/features/signup/data/models/sign_up_request_model.dart';
 import 'package:apointment_app/features/signup/data/models/sign_up_response_model.dart';
 import 'package:apointment_app/features/signup/data/repo/sign_up_repo.dart';
@@ -24,12 +26,13 @@ class SignUpCubit extends Cubit<SignUpState> {
     var response = await signUpRepo.signUp(signUpRequest: signUpRequest);
 
     response.fold(
-      (failure) => emit(
-        SignUpFailure(failure.apiErrorModel.message ?? 'UnKnowen Error'),
-      ),
-      (signUpResponseModel) => emit(
+        (failure) => emit(
+              SignUpFailure(failure.apiErrorModel.message ?? 'UnKnowen Error'),
+            ), (signUpResponseModel) {
+      getIt.get<ApiKeys>().token = signUpResponseModel.userData!.token;
+      emit(
         SignUpSuccess(signUpResponseModel),
-      ),
-    );
+      );
+    });
   }
 }

@@ -16,7 +16,6 @@ class LoginCubit extends Cubit<LoginState> {
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   Future<void> loginMethod(LoginRequestBody loginRequest) async {
-    // SharedPreferences pref = await SharedPreferences.getInstance();
     emit(LoginLoading());
 
     var response = await loginRepo.login(loginRequest);
@@ -27,7 +26,6 @@ class LoginCubit extends Cubit<LoginState> {
         (responseBody) async {
       getIt.get<ApiKeys>().token = responseBody.userData!.token;
 
-      // pref.setBool('isLogin', true);
       emit(
         LoginSuccess(
           responseBody,
