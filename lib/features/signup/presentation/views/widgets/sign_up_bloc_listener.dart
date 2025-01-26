@@ -58,16 +58,17 @@ class SignUpBlocListener extends StatelessWidget {
           ),
           actions: [
             TextButton(
-                onPressed: () {
-                  GoRouter.of(context).pop();
-                  GoRouter.of(context).pop();
-                },
-                child: Text(
-                  'Got it',
-                  style: Styles.font14Regular.copyWith(
-                      color: ColorManager.mainBlue,
-                      fontWeight: FontWeightHelper.semiBold),
-                ))
+              onPressed: () {
+                GoRouter.of(context).pop();
+                GoRouter.of(context).pop();
+              },
+              child: Text(
+                'Got it',
+                style: Styles.font14Regular.copyWith(
+                    color: ColorManager.mainBlue,
+                    fontWeight: FontWeightHelper.semiBold),
+              ),
+            ),
           ],
         );
       },

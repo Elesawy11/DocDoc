@@ -6,6 +6,7 @@ import 'package:apointment_app/features/home/presentation/manager/doctor_cubit/d
 import 'package:apointment_app/features/login/data/repo/login_repo.dart';
 import 'package:apointment_app/features/login/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:apointment_app/features/signup/data/repo/sign_up_repo.dart';
+import 'package:apointment_app/features/signup/presentation/manger/sign_up_cubit/sign_up_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -37,6 +38,11 @@ void setupServiceLocator() {
   getIt.registerLazySingleton<LoginCubit>(
     () => LoginCubit(
       getIt.get<LoginRepo>(),
+    ),
+  );
+  getIt.registerLazySingleton<SignUpCubit>(
+    () => SignUpCubit(
+      getIt.get<SignUpRepo>(),
     ),
   );
   getIt.registerSingleton<ApiKeys>(
