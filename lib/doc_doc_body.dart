@@ -13,6 +13,11 @@ class DocDocBody extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp.router(
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+          surface: Colors.white,
+        )),
         debugShowCheckedModeBanner: false,
         routerConfig: AppRouter.router,
       ),

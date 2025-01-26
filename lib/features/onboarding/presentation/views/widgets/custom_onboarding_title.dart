@@ -3,7 +3,6 @@ import 'package:apointment_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../../core/utils/assets.dart';
 
 class CustomOnboardingTitle extends StatelessWidget {
